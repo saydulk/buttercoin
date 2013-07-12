@@ -79,4 +79,6 @@ module.exports = class EngineWebsocketApi extends EventEmitter
       args: [account_id]
 
   get_spread: =>
-  
+    @error "NYI - get_spread"
+    @query.execute_operation
+      kind: BC.operations.GET_SPREAD

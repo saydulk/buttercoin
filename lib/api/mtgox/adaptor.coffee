@@ -36,15 +36,20 @@ module.exports = class MtGoxAdaptor
       return false
 
   translate_inbound: (msg) =>
-    if msg.op is 'auth'
-      return {
-        kind: 'AUTH'
-        account_id: msg.username
-      }
+    #if msg.op is 'auth'
+      #return {
+        #kind: 'AUTH'
+        #account_id: msg.username
+      #}
       
     if msg.op is 'call'
       msg = @decode_inbound(msg.call)
+      if msg.call is 'BTCUSD/ticker_fast'
+        return {
+          kind: "TICKER"
+        }
 
   translate_outbound: (msg) =>
+    console.log "translating outbound:", msg
     msg
 

@@ -9,6 +9,7 @@ module.exports = class QueryProtocol extends Protocol
     @query_interface = @options.query_provider
     @handlers =
       GET_BALANCES: @get_balances
+      GET_SPREAD: @get_spread
 
   handle_close: =>
     @info 'QUERY PROTOCOL CLOSED'
@@ -30,3 +31,9 @@ module.exports = class QueryProtocol extends Protocol
   get_balances: (account_id) =>
     res = @query_interface.get_balances(account_id)
     return {balances: res}
+
+  get_spread: =>
+    res = @query_interface.get_spread('USD', 'BTC')
+    @error "done got it"
+    return {spread: res}
+

@@ -29,6 +29,8 @@ module.exports = class ApiProtocol extends Protocol
   handle_parsed_data: (data) =>
     if data.kind is 'AUTH'
       @handle_auth_request(data)
+    else if data.kind is 'TICKER'
+      @handle_ticker_request(data)
     else
       @connection.send_obj
         operation: data
@@ -56,6 +58,10 @@ module.exports = class ApiProtocol extends Protocol
     @connection.send_obj
       operation: data
       result: 'failure'
+
+  handle_ticker_request: (data) =>
+    @info "REQUESTING TICKER INFO:"
+    @connection.send_obj @event_source.get_spread()
 
   handle_close: =>
     for x in @mkGeneralListeners()
