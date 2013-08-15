@@ -15,7 +15,7 @@
   "dependencies": {
     "buttercoin-engine": "git://github.com/buttercoin/buttercoin-engine.git#master",
     "isnode": "*",
-    "ws": "*",
+    "ws": "git://github.com/RevCBH/ws.git#master",
     "wsany": "*",
     "stump": "0.0.4",
     "enkihelpers": "*",
